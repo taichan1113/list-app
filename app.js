@@ -3,9 +3,13 @@ const mysql = require('mysql');
 const app = express();
 const connection = mysql.createConnection({
   host: 'us-cdbr-east-06.cleardb.net',
-  user: 'b8f42ab6d518ec',
-  password: '1e743467',
-  database: 'heroku_9c9df56d1e6e09d'
+  user: 'bbd7861425ff0a',
+  password: 'ddb27741',
+  database: 'heroku_304847af8f42339'
+  // host: 'localhost',
+  // user: 'root',
+  // password: 'PpeqSQL_t37151113',
+  // database: 'Expiration'
 });
 
 dateNull = (date) => {
@@ -19,15 +23,6 @@ dateNull = (date) => {
 
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: false}));
-
-// app.get('/', (req, res) => {
-//   connection.query(
-//     'SELECT * FROM food',
-//     (error, results) => {
-//       res.render('top.ejs', {items: results, url: req.url});
-//     }
-//   );
-// });
 
 app.get('/', (req, res) => {
   connection.query(
