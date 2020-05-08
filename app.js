@@ -2,10 +2,10 @@ const express = require('express');
 const mysql = require('mysql');
 const app = express();
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'PpeqSQL_t37151113',
-  database: 'Expiration'
+  host: 'us-cdbr-east-06.cleardb.net',
+  user: 'b8f42ab6d518ec',
+  password: '1e743467',
+  database: 'heroku_9c9df56d1e6e09d'
 });
 
 dateNull = (date) => {
