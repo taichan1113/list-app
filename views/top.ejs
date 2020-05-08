@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>賞味/消費期限</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/main.js"></script>
+  </head>
+  <body>
+    <div class="frame">
+
+      <!-- <% 
+        if (url.includes('/sort')) {
+          form = "<form action='/' method='GET'><input type='submit' value='戻る'></input></form>"
+        }
+        else {
+          form = "<form action='/sort' method='GET'><input type='submit' value='並び替え'></input></form>"
+        }
+      %>
+      <%- form %> -->
+
+      <table>
+        <tr>
+          <th class="contentsCol">食材</th>
+          <th class="contentsCol">購入日</th>
+          <th class="contentsCol">期限</th>
+          <th class="contentsCol">タイプ</th>
+          <th class="btnCol"></th>
+          <th class="btnCol"></th>
+        </tr>
+
+        <%
+          var today = new Date();
+          var oneWeekLater = new Date(today.getTime());
+          oneWeekLater.setDate(oneWeekLater.getDate() + 7);
+          <!-- console.log(oneWeekLater); -->
+
+          date2str = (date) => {
+          var year_str = date.getFullYear();
+          var month_str = 1 + date.getMonth();
+          var day_str = date.getDate();
+          
+          month_str = ('0' + month_str).slice(-2);
+          day_str = ('0' + day_str).slice(-2);
+          
+          format_str = 'YYYY-MM-DD';
+          format_str = format_str.replace(/YYYY/g, year_str);
+          format_str = format_str.replace(/MM/g, month_str);
+          format_str = format_str.replace(/DD/g, day_str);
+          
+          return format_str;
+          };
+
+          dateExchange = (date) => {
+            if (date) {
+              return date2str(date);
+            }
+            else {
+              return date;
+            }
+          };
+
+          expTypeString = (type) => {
+            switch (type) {
+              case 1:
+              return "<a class='shohi'>消費</a>";
+              break;
+              case 2:
+              return "<a class='shomi'>賞味</a>";
+              break;
+              default:
+              return "<a class='unselected'>非選択</a>";
+              break;
+            };
+          };
+        %>
+
+        <% items.forEach((item) => { %>
+          <tr>
+            <td><%= item.name; %></td>
+            <td><%= dateExchange(item.purchaseDate); %></td>
+            <td><%= dateExchange(item.expirationDate); %></td>
+            <td><%- expTypeString(item.expirationType); %></td>
+            <td>
+              <form action="/delete/<%= item.id %>" method="POST">
+               <input class="btn btnDelete" type="submit" value="削除">
+              </form>
+            </td>
+            <td>編集</td>
+          </tr>
+        <% }); %>
+
+          <tr>
+            <form action="/add" method="post">
+              <td class="addRow">
+                <input class="inputText" type="text" placeholder="食材名" name="itemName">
+              </td>
+              <td class="addRow">
+                <input class="inputDate" type="date" name="itemPurchaseDate" value="<%= dateExchange(today) %>">
+              </td>
+              <td class="addRow">
+                <input class="inputDate" type="date" name="itemExpirationDate" value="<%= dateExchange(oneWeekLater) %>">
+              </td>
+              <td class="addRow">
+                <input type="radio" value=1 name="itemType"><span class="btnRadio">消費</span>
+                <br>
+                <input type="radio" value=2 name="itemType"><span class="btnRadio">賞味</span>
+              </td>
+              <td class="addRow" colspan="2">
+                <input class="btn btnAdd" type="submit" value="追加">
+              </td>
+            </form>
+          </tr>
+
+      </table>
+    </div>
+  </body>
+</html>

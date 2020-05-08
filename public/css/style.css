@@ -1,0 +1,84 @@
+/* .frame {
+  margin: 0, auto;
+} */
+
+table {
+  margin: 0 auto;
+  width: 90%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+tr{
+  border-top: solid 1px rgb(156, 156, 156);
+}
+
+th {
+/* font-weight: normal; */
+background-color: skyblue;
+color: rgb(43, 65, 138);
+}
+
+td {
+  padding: 10px 0;
+}
+
+.contentsCol {
+  width: 20%;
+}
+
+.btnCol{
+  width: 10%;
+}
+
+input {
+  border: none;
+  display: inline-block;
+  background-color: skyblue;
+}
+
+.btn {
+  border-radius: 5px;
+  
+}
+
+.btnDelete {
+  background-color: rgb(245, 171, 102);
+  width: 90%;
+}
+
+.btnAdd {
+  background-color: rgb(43, 65, 138);
+  width: 80%;
+  height: 30px;
+  color: white;
+  font-weight: bold;
+}
+
+.inputText, .inputDate{
+  width: 90%;
+  height: 20px;
+  text-align: center;
+  border: solid 1px rgb(156, 156, 156);
+  background-color: white;
+}
+
+.btnRadio {
+  color: rgb(43, 65, 138);
+}
+
+.addRow {
+  background-color: skyblue;
+}
+
+.shohi {
+  color: red;
+}
+
+.shomi {
+  color: orange;
+}
+
+.unselected {
+  color: gray;
+}
