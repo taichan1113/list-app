@@ -1,16 +1,45 @@
 const express = require('express');
 const mysql = require('mysql');
 const app = express();
-const connection = mysql.createConnection({
+app.use(express.static('public'));
+app.use(express.urlencoded({extended: false}));
+app.set('port', (process.env.PORT || 3000));
+
+var db_config = {
   host: 'us-cdbr-east-06.cleardb.net',
   user: 'bbd7861425ff0a',
   password: 'ddb27741',
   database: 'heroku_304847af8f42339'
-  // host: 'localhost',
-  // user: 'root',
-  // password: 'PpeqSQL_t37151113',
-  // database: 'Expiration'
-});
+};
+var connection;
+
+handleDisconnect = ()=> {
+  console.log('INFO.CONNECTION_DB: ');
+  connection = mysql.createConnection(db_config);
+
+  connection.connect((err) => {
+    if (err) {
+      console.log('ERROR.CONNECTION_DB: ', err);
+      setTimeout(handleDisconnect, 1000);
+    }
+  });
+
+  connection.on('error', (err) => {
+    console.log('ERROR.DB: ', err);
+    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+      console.log('ERROR.CONNECTION_LOST: ', err);
+      handleDisconnect();
+    } else {
+      throw err;
+    }
+  });
+}
+
+handleDisconnect();
+
+// connection = mysql.createConnection(db_config);
+// connection.connect();
+
 
 dateNull = (date) => {
   if (date) {
@@ -21,8 +50,6 @@ dateNull = (date) => {
   }
 };
 
-app.use(express.static('public'));
-app.use(express.urlencoded({extended: false}));
 
 app.get('/', (req, res) => {
   connection.query(
@@ -53,4 +80,4 @@ app.post('/add', (req, res) => {
   );
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(app.get('port'));
