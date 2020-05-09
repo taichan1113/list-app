@@ -26,7 +26,7 @@ app.use(express.urlencoded({extended: false}));
 
 app.get('/', (req, res) => {
   connection.query(
-    'SELECT * FROM food ORDER BY expirationType IS NULL ASC, expirationType ASC, expirationDate ASC',
+    'SELECT * FROM food ORDER BY expirationDate ASC, expirationType IS NULL ASC, expirationType ASC',
     (error, results) => {
       res.render('top.ejs', {items: results, url: req.url});
     }
