@@ -21,14 +21,7 @@ let db_config_offline = {
 
 let pool = mysql.createPool(db_config_offline);
 
-dateNull = (date) => {
-  if (date) {
-    return date;
-  }
-  else {
-    return null;
-  }
-};
+dateNull = (date) => date? date : null;
 
 app.get('/', (req, res) => {
   pool.getConnection((err, connection) => {
