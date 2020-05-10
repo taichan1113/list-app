@@ -16,7 +16,7 @@ let db_config_offline = {
   host: 'localhost',
   user: 'root',
   password: 'PpeqSQL_t37151113',
-  database: 'applist'
+  databagitse: 'applist'
 };
 
 let connection;
@@ -39,21 +39,24 @@ handleDisconnect = () => {
 
 handleDisconnect();
 
+let FST = 'foodstock_taichi';
+let FSM = 'foodstock_maki';
+let foodStock = FST;
 
 dateNull = (date) => date? date : null;
 
 app.get('/', (req, res) => {
   connection.query(
-    'SELECT * FROM foodstock_taichi ORDER BY expirationDate ASC, expirationType IS NULL ASC, expirationType ASC',
+    `SELECT * FROM ${foodStock} ORDER BY expirationDate ASC, expirationType IS NULL ASC, expirationType ASC`,
     (error, results) => {
-      res.render('top.ejs', {items: results, url: req.url});
+      res.render('top.ejs', {items: results});
     }
   );
 });
 
 app.post('/delete/:id', (req, res) => {
   connection.query(
-    'delete from foodstock_taichi where id = ?',
+    `delete from ${foodStock} where id = ?`,
     [req.params.id],
     (error, results) => {
       res.redirect('/');
@@ -63,7 +66,7 @@ app.post('/delete/:id', (req, res) => {
 
 app.post('/add', (req, res) => {
   connection.query(
-    'insert into foodstock_taichi (name, purchaseDate, expirationDate, expirationType) values (?, ?, ?, ?)',
+    `insert into ${foodStock} (name, purchaseDate, expirationDate, expirationType) values (?, ?, ?, ?)`,
     [req.body.itemName, dateNull(req.body.itemPurchaseDate), dateNull(req.body.itemExpirationDate), req.body.itemType],
     (error, results) => {
       res.redirect('/');
