@@ -2,6 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>賞味/消費期限</title>
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/main.js"></script>
@@ -10,12 +11,12 @@
     <div class="frame">
       <table>
         <tr>
-          <th class="contentsCol">食材</th>
-          <th class="contentsCol">購入日</th>
-          <th class="contentsCol">期限</th>
-          <th class="contentsCol">タイプ</th>
-          <th class="btnCol"></th>
-          <th class="btnCol"></th>
+          <th class="foodCol">食材</th>
+          <th class="dateCol">購入日</th>
+          <th class="dateCol">期限</th>
+          <th class="typeCol">タイプ</th>
+          <th class="deleteCol"></th>
+          <th class="editCol"></th>
         </tr>
 
         <%
@@ -58,36 +59,40 @@
 
         <% items.forEach((item) => { %>
           <tr>
-            <td><%= item.name; %></td>
-            <td><%= dateExchange(item.purchaseDate); %></td>
-            <td><%= dateExchange(item.expirationDate); %></td>
-            <td><%- expTypeString(item.expirationType); %></td>
-            <td>
+            <td class="foodCol"><%= item.name; %></td>
+            <td class="dateCol"><%= dateExchange(item.purchaseDate); %></td>
+            <td class="dateCol"><%= dateExchange(item.expirationDate); %></td>
+            <td class="typeCol"><%- expTypeString(item.expirationType); %></td>
+            <td class="deleteCol">
               <form action="/delete/<%= item.id %>" method="POST">
                <input class="btn btnDelete" type="submit" value="食べた！">
               </form>
             </td>
-            <td>編集</td>
+            <td class="editCol">編集</td>
           </tr>
         <% }); %>
 
           <tr>
             <form action="/add" method="post">
-              <td class="addRow">
+              <td class="addRow foodCol">
                 <input class="inputText" type="text" placeholder="食材名" name="itemName">
               </td>
-              <td class="addRow">
+              <td class="addRow dateCol">
                 <input class="inputDate" type="date" name="itemPurchaseDate" value="<%= dateExchange(today) %>">
               </td>
-              <td class="addRow">
+              <td class="addRow dateCol">
                 <input class="inputDate" type="date" name="itemExpirationDate" value="<%= dateExchange(oneWeekLater) %>">
               </td>
-              <td class="addRow">
-                <input type="radio" value=1 name="itemType"><span class="btnRadio">消費</span>
+              <td class="addRow typeCol">
+                <label class="btnRadio">
+                  <input type="radio" value=1 name="itemType">消費
+                </label>
                 <br>
-                <input type="radio" value=2 name="itemType"><span class="btnRadio">賞味</span>
-              </td>
-              <td class="addRow" colspan="2">
+                <label class="btnRadio">
+                  <input type="radio" value=2 name="itemType">賞味
+                </label>
+              </td >
+              <td class="addRow addCell" colspan="2">
                 <input class="btn btnAdd" type="submit" value="追加">
               </td>
             </form>

@@ -2,9 +2,20 @@
   margin: 0, auto;
 } */
 
-table {
+body {
+  font-size: 12px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.frame {
+  padding-top: 10px;
+  width: 300px;
   margin: 0 auto;
-  width: 90%;
+}
+
+table {
+  /* width: 90%; */
   border-collapse: collapse;
   text-align: center;
 }
@@ -23,45 +34,55 @@ td {
   padding: 10px 0;
 }
 
-.contentsCol {
-  width: 20%;
+.foodCol, .deleteCol{
+  width: 70px;
 }
 
-.btnCol{
-  width: 10%;
+.typeCol {
+  width:50px;
+}
+
+.dateCol{
+  width: 40px;
+}
+
+.editCol{
+  width: 30px;
 }
 
 input {
   border: none;
   display: inline-block;
-  background-color: skyblue;
+  background-color: white;
+}
+
+.inputText{
+  width: 50px;
+  height: 20px;
+  text-align: center;
+  border: solid 1px rgb(156, 156, 156);
+}
+
+.inputDate{
+  width: 35px;
 }
 
 .btn {
   border-radius: 5px;
-  
 }
 
 .btnDelete {
   background-color: rgb(245, 171, 102);
-  width: 90%;
+  width: 70px;
 }
 
 .btnAdd {
   background-color: rgb(43, 65, 138);
-  width: 80%;
-  height: 30px;
   color: white;
   font-weight: bold;
+  width: 60px;
 }
 
-.inputText, .inputDate{
-  width: 90%;
-  height: 20px;
-  text-align: center;
-  border: solid 1px rgb(156, 156, 156);
-  background-color: white;
-}
 
 .btnRadio {
   color: rgb(43, 65, 138);
@@ -81,4 +102,114 @@ input {
 
 .unselected {
   color: gray;
+}
+
+@media (min-width: 450px) {
+
+  body {
+    font-size: 16px;
+  }
+  
+  .frame {
+    width: 450px;
+    margin: 0 auto;
+  }
+  
+  .foodCol, .deleteCol{
+    width: 100px;
+  }
+  
+  .typeCol {
+    width:60px;
+  }
+  
+  .dateCol {
+    width: 70px;
+  }
+  
+  .editCol{
+    width: 50px;
+  }
+
+  .inputText{
+    width: 90%;
+  }
+
+  .inputDate{
+    width: 65px;
+  }
+  
+  .btn {
+    border-radius: 5px;
+  }
+  
+  .btnDelete {
+    background-color: rgb(245, 171, 102);
+    width: 70px;
+  }
+  
+  .btnAdd {
+    background-color: rgb(43, 65, 138);
+    color: white;
+    font-weight: bold;
+    width: 60px;
+  }
+}
+
+@media (min-width: 600px) {
+  .frame {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .foodCol{
+    width: 20%;
+  }
+  
+  .dateCol {
+    width: 15%;
+  }
+
+  .typeCol {
+    width:20%;
+  }
+  
+  .deleteCol{
+    width: 15%;
+  }
+
+  .editCol{
+    width: 15%;
+  }
+
+  .inputText{
+    width: 90%;
+  }
+
+  .inputDate{
+    width: 90%;
+  }
+  
+  .btn {
+    border-radius: 5px;
+  }
+  
+  .btnDelete {
+    background-color: rgb(245, 171, 102);
+    width: 70px;
+  }
+  
+  .btnAdd {
+    background-color: rgb(43, 65, 138);
+    color: white;
+    font-weight: bold;
+    width: 60px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .frame {
+    width: 1000px;
+    margin: 0 auto;
+  }
 }
