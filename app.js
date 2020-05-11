@@ -40,8 +40,8 @@ handleDisconnect = () => {
 handleDisconnect();
 
 let FST = 'foodstock_taichi';
-let FSM = 'foodstock_maki';
-let foodStock = FST;
+let FSM = 'food';
+let foodStock = FSM;
 
 dateNull = (date) => date? date : null;
 
