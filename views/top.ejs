@@ -84,13 +84,11 @@
                 <input class="inputDate" type="date" name="itemExpirationDate" value="<%= dateExchange(oneWeekLater) %>">
               </td>
               <td class="addRow typeCol">
-                <label class="btnRadio">
-                  <input type="radio" value=1 name="itemType">消費
-                </label>
+                <input type="radio" value=1 name="itemType" id="shohi">
+                <label class="btnRadio" for="shohi">消費</label>
                 <br>
-                <label class="btnRadio">
-                  <input type="radio" value=2 name="itemType">賞味
-                </label>
+                <input type="radio" value=2 name="itemType" id="shomi">
+                <label class="btnRadio" for="shomi">賞味</label>
               </td >
               <td class="addRow addCell" colspan="2">
                 <input class="btn btnAdd" type="submit" value="追加">
