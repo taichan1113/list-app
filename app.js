@@ -41,7 +41,7 @@ handleDisconnect();
 
 let FST = 'foodstock_taichi';
 let FSM = 'food';
-let foodStock = FSM;
+let foodStock = FST;
 
 dateNull = (date) => date? date : null;
 
